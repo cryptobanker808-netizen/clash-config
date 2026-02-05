@@ -1,0 +1,39 @@
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+
+tun:
+  enable: true
+  stack: system
+  dns-hijack:
+    - any:53
+
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+
+proxies:
+  - name: SIP_SOCKS5
+    type: socks5
+    server: 45.195.253.5
+    port: 62463
+    username: rvfJfSTJ
+    password: uWFW7nYU
+    udp: true
+
+proxy-groups:
+  - name: SIP_ONLY
+    type: select
+    proxies:
+      - SIP_SOCKS5
+      - DIRECT
+
+rules:
+  - PROCESS-NAME,sipnetic,SIP_ONLY
+  - PROCESS-NAME,com.counterpath.bria,SIP_ONLY
+  - MATCH,DIRECT
