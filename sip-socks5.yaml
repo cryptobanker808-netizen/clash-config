@@ -34,6 +34,6 @@ proxy-groups:
       - DIRECT
 
 rules:
-  - PROCESS-NAME,sipnetic,SIP_ONLY
+  - PROCESS-NAME,com.sipnetic.app,SIP_ONLY
   - PROCESS-NAME,com.counterpath.bria,SIP_ONLY
   - MATCH,DIRECT
